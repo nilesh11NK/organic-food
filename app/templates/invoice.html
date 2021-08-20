@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INVOICE</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Invoice
+                <strong></strong>
+                {% csrf_token %}
+                <span class="float-right"> <strong>Status:</strong>paid</span>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        <h6 class="mb-3">From: </h6>
+                        <div>
+                            <strong>Organic food</strong>
+                        </div>
+                        <div>nilesh parmar</div>
+                        <div>vadgam</div>
+                        <div>Email: nilesh.parmar9924@gmail.com</div>
+                        <div>Phone: +91 9104465962</div>
+                    </div>
+                    
+                    {% for i in user %}
+                        
+                    
+                        
+                    <div class="col-sm-6">
+                        <h6 class="mb-3">To:</h6>
+                        <div>
+                            <strong>Name: {{i.name}}</strong>
+                        </div>
+                       
+                        <div>Email: {{i.email}}</div>
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="table-responsive-sm">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="center">#</th>
+                                <th>Item</th>
+                                <th class="right">Unit Cost</th>
+                                <th class="center">Qty</th>
+                                <th class="right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for i in Cart %}
+                                
+                                
+                            <tr>
+                                <td class="center">1</td>
+                                <td class="left strong">{{i.product.p_name}}</td>
+                                <td class="right">{{i.product.p_price}}</td>
+                                <td class="center">{{i.p_qty}}</td>
+                                <td class="right">{{i.sub_total}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-5">
+                    </div>
+                    <div class="col-lg-4 col-sm-5 ml-auto">
+                        <table class="table table-clear">
+                            <tbody>
+                                <tr>
+                                    <td class="left">
+                                        <strong>subtotal</strong>
+                                    </td>
+                                    <td class="right">{{sub_total}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <strong>shipping</strong>
+                                    </td>
+                                    <td class="right">free</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td class="right">
+                                        <strong>{{sub_total}}</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

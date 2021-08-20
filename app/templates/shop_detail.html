@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+<div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Categories</a>
+                            <ul class="dropdown-menu">
+								{% for i in cat %}
+								<li><a href="/shop">{{i.c_name}}</a></li>
+								{% endfor %}
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact_us">Contact Us</a></li>
+                    </ul>
+                </div>
+{% endblock head %}
+
+{% block body %}
+
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Shop Detail</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">Shop Detail </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Shop Detail  -->
+    <div class="shop-detail-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5 col-md-6">
+                    <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active"> <img class="d-block w-100" src="{{data.p_img.url}}" alt="First slide"> </div>
+                        </div>
+                                            </div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-6">
+                    <div class="single-product-details">
+                        <h2>{{data.p_name}}</h2>
+                        <h5>&#8377;{{data.p_price}}</h5>
+                        <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p>
+						<h4>Short Description:</h4>
+						<p>{{data.p_dis}}</p>
+				
+
+						<div class="price-box-bar">
+							<div class="cart-and-bay-btn">
+								<a class="btn hvr-hover" data-fancybox-close="" href="{% url 'addtocart' data.id %}">Add to cart</a>
+							</div>
+                           
+						</div>
+
+		
+                    </div>
+                </div>
+            </div>
+			
+		
+        </div>
+    </div>
+    <!-- End Cart -->
+    <!-- End Instagram Feed  -->
+{% endblock body %}
+
+

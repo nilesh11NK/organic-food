@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item "><a class="nav-link" href="/about">About Us</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Categories</a>
+                            <ul class="dropdown-menu">
+								{% for i in cat %}
+								<li><a href="/shop">{{i.c_name}}</a></li>
+								{% endfor %}
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact_us">Contact Us</a></li>
+                    </ul>
+                </div>
+
+{% endblock head %}
+
+{% block body %}
+<div class="col-4" style="border;">
+    <div class="col">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            </button>
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+              <div class="cart-box-main">
+                <div class="container">
+                <div class="col-sm-6 col-lg-12 mb-3">
+                    <div class="title-left">
+                        <h3>Create New Account</h3>
+                    </div>
+                    <form method="POST">
+                    {% csrf_token %}
+                    {% if error_uname %}
+                    <div class="alert">
+                        <span class="closebtn"  onclick="this.parentElement.style.display='none';" style="color:red">&times;
+                        {{error_uname}}</span>
+                    </div>
+                        
+                    {% endif %}
+                       <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="InputName" class="mb-0">First Name</label>
+                                <input type="text" class="form-control" name="name" placeholder="First Name"> </div>
+                            <div class="form-group col-md-6">
+                                <label for="InputLastname" class="mb-0">Last Name</label>
+                                <input type="text" class="form-control" name="lname" placeholder="Last Name"> </div>
+                            <div class="form-group col-md-6">
+                                <label for="InputEmail1" class="mb-0">Email Address</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter Em ail"> </div>
+                            <div class="form-group col-md-6">
+                                <label for="InputPassword1" class="mb-0">Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password"> </div>
+                        </div>
+                        <button type="submit" class="btn hvr-hover">Register</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+          </div>
+
+{% if error %}
+{% comment %} <script>
+    alert('Regitered Successfully');
+    window.location ="{% url 'login' %}";
+</script> {% endcomment %}
+{% endif %}
+
+{% endblock body %}
+
+
